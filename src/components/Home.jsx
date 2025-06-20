@@ -408,7 +408,9 @@ const Home = () => {
           <div className="flex-1 flex flex-col items-center justify-center bg-amber-400 p-6 rounded-md space-y-6">
             <Tooltip {...settings}>
               <div role="button" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none">
-                Hover me
+
+                {settings.trigger} me
+                
               </div>
             </Tooltip>
 

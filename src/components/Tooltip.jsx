@@ -94,8 +94,7 @@
 
 // export default Tooltip;
 
-
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 
 const Tooltip = ({
   children,
@@ -110,6 +109,7 @@ const Tooltip = ({
   image,
 }) => {
   const [visible, setVisible] = useState(false);
+  const tooltipId = useId(); // unique ID for aria-describedby
 
   const triggerHandlers = {
     hover: {
@@ -158,24 +158,26 @@ const Tooltip = ({
     <div className="relative inline-block">
       <div
         {...triggerHandlers[trigger]}
-        className="inline-block"
-        tabIndex={trigger === 'focus' ? 0 : undefined}
+        tabIndex={trigger === 'focus' ? 0 : undefined} // for keyboard nav
+        aria-describedby={tooltipId} // accessibility link
+        className="inline-block focus:outline-none"
       >
         {children}
       </div>
 
       <div
-        className={`absolute z-20 ${positionClass} ${width} ${fontSize} ${shapeClass} shadow-lg ${shape === 'bubble' ? arrowFix : ''
-          } ${shape === 'bubble' ? arrowPositionFix : ''} transition-all duration-300 transform ${
+        id={tooltipId}
+        role="tooltip"
+        className={`absolute z-20 ${positionClass} ${width} ${fontSize} ${shapeClass} shadow-lg transition-all duration-300 transform ${
           visible ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-90 opacity-0 pointer-events-none'
-        }`}
+        } ${shape === 'bubble' ? arrowFix : ''} ${shape === 'bubble' ? arrowPositionFix : ''}`}
         style={{ backgroundColor: bgColor, color: textColor }}
       >
         {icon && <span className="mr-2">💡</span>}
         {image && (
           <img
             src="https://via.placeholder.com/20"
-            alt="tooltip"
+            alt="tooltip visual"
             className="inline mr-2"
           />
         )}
@@ -186,4 +188,3 @@ const Tooltip = ({
 };
 
 export default Tooltip;
-
