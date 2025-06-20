@@ -14,7 +14,7 @@ const Tooltip = ({
   image,
 }) => {
   const [visible, setVisible] = useState(false);
-  const tooltipId = useId(); // unique ID for aria-describedby
+  const tooltipId = useId();
 
   const triggerHandlers = {
     hover: {
@@ -63,8 +63,8 @@ const Tooltip = ({
     <div className="relative inline-block">
       <div
         {...triggerHandlers[trigger]}
-        tabIndex={trigger === 'focus' ? 0 : undefined} // for keyboard nav
-        aria-describedby={tooltipId} // accessibility link
+        tabIndex={trigger === 'focus' ? 0 : undefined}
+        aria-describedby={tooltipId}
         className="inline-block focus:outline-none"
       >
         {children}
@@ -75,23 +75,22 @@ const Tooltip = ({
         role="tooltip"
         className={`absolute z-20 ${positionClass} ${width} ${fontSize} ${shapeClass} shadow-lg transition-all duration-300 transform ${
           visible ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-90 opacity-0 pointer-events-none'
-        } ${shape === 'bubble' ? arrowFix : ''} ${shape === 'bubble' ? arrowPositionFix : ''}`}
+        } ${shape === 'bubble' ? arrowFix : ''} ${shape === 'bubble' ? arrowPositionFix : ''} flex items-center gap-2`}
         style={{ backgroundColor: bgColor, color: textColor }}
       >
-        {icon && <span className="mr-2">💡</span>}
+        {icon && <span className="text-lg">💡</span>}
         {image && (
           <img
-            src="https://via.placeholder.com/20"
+            src="https://th.bing.com/th/id/OIP.SDFYW9LFUXE9NIKPmS0ZEwHaE8?w=295&h=196&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
             alt="tooltip visual"
-            className="inline mr-2"
+            className="w-8 h-8 object-cover rounded"
           />
         )}
-        Tooltip Text!
+        <span>Tooltip Text!</span>
       </div>
     </div>
   );
 };
 
 export default Tooltip;
-
 

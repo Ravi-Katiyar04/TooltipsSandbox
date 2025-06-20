@@ -167,9 +167,9 @@ const Home = () => {
             <label className="block">
               <span className="font-semibold text-gray-700 dark:text-gray-200">Width</span>
               <select name="width" value={settings.width} onChange={handleChange} className="block w-full mt-1 p-2 border rounded dark:bg-gray-800 dark:text-white">
-                <option value="w-38">Narrow</option>
-                <option value="w-42">Medium</option>
-                <option value="w-48">Wide</option>
+                <option value="w-42">Narrow</option>
+                <option value="w-48">Medium</option>
+                <option value="w-54">Wide</option>
               </select>
             </label>
 
@@ -210,3 +210,4 @@ const Home = () => {
 };
 
 export default Home;
+
